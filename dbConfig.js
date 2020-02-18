@@ -25,6 +25,11 @@ var questions = mongoose.Schema({
     }]
 });
 
+var users = mongoose.Schema({
+    phonenumber : 'string',
+    password : 'string',
+});
+
 // 7. 정의된 스키마를 객체처럼 사용할 수 있도록 model() 함수로 컴파일
 var Questions = mongoose.model('Schema', questions);
 
@@ -32,9 +37,11 @@ var Questions = mongoose.model('Schema', questions);
 var newQuestions = new Questions({
     questions:
         [
-            { question1: 'Anti-Aging', question2: 'Whitening', question3: 'TroubleCaring', question4: 'Facial-Lifting' },
+            { subtxt : '해당하는 모든 항목을 선택해주세요.', maintxt : '1. 최근 3개월간 사용한 피부 미용 제품을 선택해주세요.', question1: 'Anti-Aging', question2: 'Whitening', question3: 'TroubleCaring', question4: 'Facial-Lifting' },
             { question1: 'Oilly-Type', question2: 'Dry-Type', question3: 'Combination-Type' },
             { question1: '1 Hours', question2: '2 Hours', question3: '3 Hours', question4: '4 Hours' },
+            { question1: '1 Hours', question2: '2 Hours', question3: '3 Hours', question4: '4 Hours' },
+
         ]
 });
 // var newQuestions = new Questions({ name: 'Hong Gil Dong', address: '서울시 강남구 논현동', age: '22' });
