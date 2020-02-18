@@ -3,11 +3,23 @@ var userRouter = express.Router();
 
 var userModel = require('../models/userModel');
 
-userRouter.post('/api/auth', async (req, res) => {
+userRouter.post('/api/register', async (req, res) => {
     try {
-        console.log(req.body);
-        res.status(200).send('hi');
+        await userModel.UserRegister(req.body);
     } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
+userRouter.post('/api/login', async (req, res) => {
+    try {
+        var result = await userModel.UserLogin(req.body);
+        if (result == true) {
+            res.status(200);
+        }
+    } catch (err) {
+        console.log(err);
         res.status(500).send(err);
     }
 });

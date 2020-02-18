@@ -2,6 +2,16 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  store: new FileStore(),
+}));
+
 process.on('unhandledRejection', (reason, p) => {
     console.log('Unhandled Rejection at:', p, 'reason:', reason)
 })
