@@ -1,12 +1,12 @@
-const mongoDB = require('../dbConfig');
+const mongoDB = require('../dbFunctions');
 
 class Questions {
-    AllQuestions() {
+    FindQuestion(data) {
         return new Promise (
             async (resolve, reject) => {
                 try {
-                    const result = await mongoDB.findFunction;
-                    resolve(result);
+                    const result = await mongoDB.findOne(data);
+                    resolve(result[0]);
                 } catch (err) {
                     console.log(err)
                     reject(err);

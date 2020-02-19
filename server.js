@@ -5,6 +5,10 @@ var bodyParser = require('body-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
+// MongoDB Questions Data List Import
+const initialData = require('./dbData');
+initialData.insertAllQuestions();
+
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
@@ -13,7 +17,7 @@ app.use(session({
 }));
 
 process.on('unhandledRejection', (reason, p) => {
-    console.log('Unhandled Rejection at:', p, 'reason:', reason)
+  console.log('Unhandled Rejection at:', p, 'reason:', reason)
 })
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,8 +27,8 @@ var mainRouter = require('./routes/routers.js');
 
 app.use(mainRouter);
 
-app.listen(19000,'localhost', function () {
-    console.log('Server On');
+app.listen(19000, 'localhost', () => {
+  console.log('Server On');
 });
 
 

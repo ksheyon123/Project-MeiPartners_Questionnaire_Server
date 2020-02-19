@@ -5,7 +5,9 @@ var userModel = require('../models/userModel');
 
 userRouter.post('/api/register', async (req, res) => {
     try {
-        await userModel.UserRegister(req.body);
+        console.log('register', req.body)
+        var result = await userModel.UserRegister(req.body);
+        res.status(200).send(result);
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -14,9 +16,10 @@ userRouter.post('/api/register', async (req, res) => {
 
 userRouter.post('/api/login', async (req, res) => {
     try {
-        var result = await userModel.UserLogin(req.body);
-        if (result == true) {
-            res.status(200);
+        var result = await userModel.UserLogin(req);
+        console.log(result);
+        if(result.user) {
+            res.status(200).send(result);
         }
     } catch (err) {
         console.log(err);

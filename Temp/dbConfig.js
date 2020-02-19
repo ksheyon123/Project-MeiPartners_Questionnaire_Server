@@ -16,6 +16,7 @@ db.once('open', function () {
 // 6. Schema 생성. (혹시 스키마에 대한 개념이 없다면, 입력될 데이터의 타입이 정의된 DB 설계도 라고 생각하면 됩니다.)
 var questions = mongoose.Schema({
     package: [{
+        skinCode : 'string',
         skinType: 'string',
         questions: [{
             subtxt: 'string',
@@ -39,7 +40,8 @@ var Questions = mongoose.model('Schema', questions);
 // 8. Student 객체를 new 로 생성해서 값을 입력
 var newQuestions = new Questions({
     package: [
-        {
+        {   
+            skinCode : 'code1',
             skinType: '건성 타입',
             questions:
                 [
@@ -53,6 +55,7 @@ var newQuestions = new Questions({
                 ]
         },
         {
+            skinCode : 'code2',
             skinType: '민감성 타입',
             questions:
                 [
@@ -67,6 +70,7 @@ var newQuestions = new Questions({
                 ]
         },
         {
+            skinCode : 'code3',
             skinType: '트러블 지성 타입',
             questions:
                 [
@@ -81,6 +85,7 @@ var newQuestions = new Questions({
                 ]
         },
         {
+            skinCode : 'code4',
             skinType: '색소 성 타입',
             questions:
                 [
@@ -95,6 +100,7 @@ var newQuestions = new Questions({
                 ]
         },
         {
+            skinCode : 'code5',
             skinType: '탄력 주름 타입',
             questions:
                 [
@@ -123,7 +129,7 @@ newQuestions.save(function (error, data) {
 // var dbDisconnect = mongoose.disconnect();
 
 var findFunction = Questions.find((error, questions) => {
-    return (questions)
-})
+    return (questions);
+});
 
 module.exports = { findFunction, dbConnection };

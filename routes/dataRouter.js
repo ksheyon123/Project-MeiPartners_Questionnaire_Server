@@ -3,10 +3,29 @@ var dataRouter = express.Router();
 
 var dataModel = require('../models/dataModel');
 
-dataRouter.get('/api/question', async (req, res) => {
+dataRouter.post('/api/getuserselectiondata', async (req, res) => {
     try {
-        var result = await dataModel.AllQuestions();
-        res.status(200).send(result[0]);
+        var  birth = req.body.year + '/' + req.body.month + '/' + req.body.day;
+        req.session.user = {
+            user : req.session.user.user,
+            name : req.session.user.name,
+            birth : birth,
+            gender : req.body.gender,
+            location : req.body.location,
+            clientname : req.body.name,
+            code : req.body.code,
+        }
+        res.status(200).send(req.session.user)
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+dataRouter.post('/api/question', async (req, res) => {
+    try {
+        console.log(req.session.user);
+        var result = await dataModel.FindQuestion(req.session.user.code);
+        res.status(200).send(result);
     } catch (err) {
         console.log(err)
         res.status(500).send(err);
