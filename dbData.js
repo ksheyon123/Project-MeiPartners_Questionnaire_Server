@@ -107,14 +107,28 @@ module.exports = {
             db.collection('itemList').insert(
                 {
                     items: [
-                        { index: 'code1', skinType: '건성 타입', cleansing: '5.8마일드 클렌저', toner: '쥬얼리 토너', ample: 'R앰플', serum: '쥬얼리 에센스', eyecream: '네오 아이 블러썸', cream: '쥬얼리 크림', mask: '377 나노셀 마스크', sunblock: '인텐시브 선블럭', blemishbam: '닥터힐럭스 블래미쉬 밤', special: '화산재 크림', opt1: '워터 탱크 모이스춰 마스크', opt2: '미라클 펩타 볼륨' },
-                        { index: 'code2', skinType: '민감성 타입', cleansing: '5.8마일드 클렌저', toner: '하이드라 리차지 스킨', ample: '콘센트레이트 앰플', serum: '리바이탈 라이즈 세럼', eyecream: '아이 블러썸', cream: '콤플렉스 크림', mask: '377 나노셀 마스크', sunblock: '인텐시브 선블럭', blemishbam: '닥터힐럭스 블래미쉬 밤', special: '화산재 크림', opt1: '라벤더 수딩 마스크', opt2: 'DX 마스크' },
+                        { index: 'code1', skinType: '건성 타입', cleansing: '5.8마일드클렌저', toner: '쥬얼리 토너', ample: 'R앰플', serum: '쥬얼리 에센스', eyecream: '네오 아이 블러썸', cream: '쥬얼리 크림', mask: '377 나노셀 마스크', sunblock: '인텐시브 선블럭', blemishbam: '닥터힐럭스 블래미쉬 밤', special: '화산재 크림', opt1: '워터 탱크 모이스춰 마스크', opt2: '미라클 펩타 볼륨' },
+                        { index: 'code2', skinType: '민감성 타입', cleansing: '5.8마일드클렌저', toner: '하이드라 리차지 스킨', ample: '콘센트레이트 앰플', serum: '리바이탈 라이즈 세럼', eyecream: '아이 블러썸', cream: '콤플렉스 크림', mask: '377 나노셀 마스크', sunblock: '인텐시브 선블럭', blemishbam: '닥터힐럭스 블래미쉬 밤', special: '화산재 크림', opt1: '라벤더 수딩 마스크', opt2: 'DX 마스크' },
                         { index: 'code3', skinType: '트러블 지성 타입', cleansing: '화이트 폼 클렌징', deepcleansing: '리페어 필링겔', toner: 'A.C 스킨', ample: 'A.C 앰플', serum: 'A.C 에센스', eyecream: '아이 블러썸', cream: 'A.C 크림', mask: '377 나노셀 마스크', sunblock: '인텐시브 선블럭', blemishbam: '닥터힐럭스 블래미쉬 밤', special: '화산재 크림', opt1: '라벤더 수딩 마스크', opt2: 'DX 마스크' },
                         { index: 'code4', skinType: '색소 성 타입', cleansing: '화이트 폼 클렌징', toner: '337 토너', ample: '337 앰플', serum: '337 에센스', eyecream: '아이 블러썸', cream: '337 크림', mask: '377 나노셀 마스크', sunblock: '인텐시브 선블럭', blemishbam: '닥터힐럭스 블래미쉬 밤', special: '화산재 크림', opt1: '미라클 펩타 볼륨', opt2: '화이트 라이어' },
                         { index: 'code5', skinType: '탄력 주름 타입', cleansing: '화이트 폼 클렌징', deepcleansing: '리페어 필링겔', toner: '미라클 펩타 볼륨', ample: '더 리프팅 R 프리미엄 앰플', serum: 'R 앰플', eyecream: '아이 블러썸', cream: 'R 크림', mask: '377 나노셀 마스크', sunblock: '인텐시브 선블럭', blemishbam: '닥터힐럭스 블래미쉬 밤', special: '화산재 크림', opt1: '펩타이드 EGF 마스크', opt2: '화이트 라이어' }
                     ]
                 }
             );
+
+            db.collection('itemExplanation').insert(
+                {
+                    manuals: [
+                        { cleansing: '5.8 마일드클렌저', manual: "피부가 가장 건강한 pH 5.3의 약산성 클렌저로 강한회복력을 지니고 있고 피부 진정에 뛰어난 효과를 지닌각종 천연 추출물과 세포재생인자에 있는 다수의 펩타이드 성분이 클렌징 시 노폐물을 확실하게 제거함과동시에 피부에 강한 활력을 주어 턴오버 주기를 당겨줍니다.", submanual: '*적당량을 덜어 충분히 거품을 낸 뒤 마사지하듯이문질러주며 미온수로 충분히 헹군 후 찬물로 마무리해줍니다.' },
+                        { cleansing: '쥬얼리 토너', manual: '' },
+                        {ample: 'R 앰픔',manual: '순도 99% 이상의 카퍼트라이펩타이드-1와 두가지펩타이드 성분이 더 함유되어 진하고 풍부한 영양성분이 피부 속부터 탄력을 채워주고, 피부를 진정시켜주는 천연 추출물이 함유되어 피부 활력을되찾아 줍니다. 식약처에서 인증받은 주름개선기능성 성분인 아데노신이 함유되어 건강하고 탱탱한 피부로 가꿔줍니다.일회용 포장 제품은 위생적으로 사용할 수 있으며,샘플용으로 활용하기에 매우 용이합니다.', submanual : '* 적당량을 덜어 얼굴 전체에 충분히 펴 발라 충분히흡수시켜 줍니다.'},
+                        {serum: '쥬얼리 에센스', manual: '달팽이 점액 추출물과 바디의 보석 진주 추출물의 농축된 유효성분들이수분과 영양이 필요한 피부에 작용하여 탄력적이고 건강한 피부로 가꾸어줍니다.', submanual :'* 적당량을 덜어 원하는 부위에 두드리듯 흡수 시킵니다.'},
+                        {eyecream: '네오 아이 블러썸', manual : ''}
+
+                    ]
+                }
+            )
+
             client.close();
         });
 

@@ -74,14 +74,33 @@ module.exports = {
             const db = client.db("QuestionContent");
 
             array = [];
+            list1 = [1, 2, 3, 4, 5];
+            tmp = [];
             var data = await db.collection('question').findOne({});
             for (let i = 0; i < data.package.length; i++) {
-                for (j = 0; j < 2; j++) {
-                    var count = data.package[i].questions.length;
-                    var rNum = Math.floor((Math.random() * count));
-                    array.push(data.package[i].questions[rNum]);
+                var count = data.package[i].questions.length;
+                var rNum1 = Math.floor((Math.random() * count));
+                var rNum2 = Math.floor((Math.random() * count));
+                do {
+                    rNum2 = Math.floor((Math.random() * count));
                 }
+                while (rNum1 == rNum2);
+
+                array.push(data.package[i].questions[rNum1]);
+                array.push(data.package[i].questions[rNum2]);
             }
+
+
+
+            for (var i = 0; i < 5; i++) {
+                rNum1 = Math.floor((Math.random() * 10));
+                rNum2 = Math.floor((Math.random() * 10));
+                tmp = array[rNum1];
+                array[rNum1] = array[rNum2];
+                array[rNum2] = tmp;
+            }
+
+            console.log(array);
             return array;
         } catch (err) {
             console.log(err);
@@ -103,9 +122,9 @@ module.exports = {
             console.log(data.items.length)
             console.log(getData.length)
 
-            for(var i = 0; i < getData.length; i++ ){ 
-                for (var j =0; j < data.items.length; j++) {
-                    if(getData[i] == data.items[j].index) {
+            for (var i = 0; i < getData.length; i++) {
+                for (var j = 0; j < data.items.length; j++) {
+                    if (getData[i] == data.items[j].index) {
                         array.push(data.items[j]);
                     }
                 }

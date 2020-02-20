@@ -3,20 +3,8 @@ var dataRouter = express.Router();
 
 var dataModel = require('../models/dataModel');
 
-dataRouter.post('/api/getuserselectiondata', async (req, res) => {
+dataRouter.get('/api/getuserselectiondata', async (req, res) => {
     try {
-        console.log(req.body)
-        var birth = req.body.year + '/' + req.body.month + '/' + req.body.day;
-        req.session.user = {
-            user: req.session.user.user,
-            name: req.session.user.name,
-            birth: birth,
-            gender: req.body.gender,
-            marriage: req.body.marriage,
-            pregnant: req.body.pregnant,
-            code: req.body.code,
-        }
-
         // Get Random Questions
         var result = await dataModel.getRandomQuestion();
         res.status(200).send(result);
@@ -87,28 +75,12 @@ dataRouter.post('/api/question', async (req, res) => {
         } else {
             var result =await dataModel.getRecommendationList(data5);
         }
+        console.log(result);
         res.status(200).send(result);
     } catch (err) {
         console.log(err)
         res.status(500).send(err);
     }
 });
-
-// dataRouter.post('/api/question/:id', async (req, res) => {
-//     try {
-//         var dataNumber = req.params.id;
-//         console.log('dataNumber', dataNumber);
-//         var getData = {
-//             code : req.session.user.code,
-//             count : dataNumber,
-//         }
-//         var result = await dataModel.FindQuestionNext(getData);
-//         console.log('result', result[dataNumber]);
-//         res.status(200).send(result[dataNumber]);
-//     } catch (err) {
-//         console.log(err)
-//         res.status(500).send(err);
-//     }
-// });
 
 module.exports = dataRouter;
