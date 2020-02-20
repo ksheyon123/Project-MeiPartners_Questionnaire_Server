@@ -98,7 +98,6 @@ module.exports = {
                 array[rNum2] = tmp;
             }
 
-            console.log(array);
             return array;
         } catch (err) {
             console.log(err);
@@ -141,14 +140,14 @@ module.exports = {
             array = [];
             var data = await db.collection('itemExplanation').findOne({});
             console.log('getItemExplanation items', data.manuals[0].skinCode)
-            console.log('getItemExplanation get Data : ', getData.code[0])
+            console.log('getItemExplanation get Data : ', getData[0])
 
-            for (var i = 0; i < getData.code.length; i++) {
+            for (var i = 0; i < getData.length; i++) {
                 console.log('hi')
                 for (var j = 0; j < data.manuals.length; j++) {
-                    console.log('getData : ' + getData.code[i] + ': ' + data.manuals[j].skinCode);
-                    if (getData.code[i] == data.manuals[j].skinCode) {
-                        console.log(getData.code[i]);
+                    console.log('getData : ' + getData[i] + ': ' + data.manuals[j].skinCode);
+                    if (getData[i] == data.manuals[j].skinCode) {
+                        console.log(getData[i]);
                         array.push(data.manuals[j]);
                     }
                 }

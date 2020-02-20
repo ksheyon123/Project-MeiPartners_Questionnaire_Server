@@ -15,6 +15,7 @@ dataRouter.get('/api/getuserselectiondata', async (req, res) => {
 
 dataRouter.post('/api/question', async (req, res) => {
     try {
+        console.log('a', req.body)
         var rawArray = new Array();
         var aJson = new Object();
         var bJson = new Object();
@@ -62,6 +63,7 @@ dataRouter.post('/api/question', async (req, res) => {
                 data5.push(str);
             }
         }
+        console.log('str', str)
 
         if (data1[0]) {
             var result = await dataModel.getRecommendationList(data1);
@@ -74,23 +76,28 @@ dataRouter.post('/api/question', async (req, res) => {
         } else {
             var result =await dataModel.getRecommendationList(data5);
         }
-        res.status(200).send(result);
+        console.log('result', result);
+        var array = [];
+        for (var i = 0; i < result.length; i++) {
+            array.push(result[i].index);
+        }
+        console.log('array1', array);
+        var sendData = await dataModel.getItemExplanation(array);
+        res.status(200).send(sendData);
     } catch (err) {
         console.log(err)
         res.status(500).send(err);
     }
 });
 
-dataRouter.post('/api/getItemExplanation', async (req, res) => {
-    try {
-        console.log('getItemExplanation', req.body);
-        var result = await dataModel.getItemExplanation(req.body);
-        console.log('result', result)
-        res.status(200).send(result)
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-})
+// dataRouter.post('/api/getItemExplanation', async (req, res) => {
+//     try {
+//         console.log('getItemExplanation', req.body);
+//         res.status(200).send(result)
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).send(err);
+//     }
+// })
 
 module.exports = dataRouter;
