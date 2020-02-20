@@ -54,6 +54,19 @@ class Questions {
             }
         )
     }
+    getItemExplanation(data) {
+        return new Promise (
+            async (resolve, reject) => {
+                try {
+                    console.log('getItemExplanation data', data)
+                    const result = await mongoDB.getItemExplanation(data);
+                    resolve(result);
+                } catch (err) {
+                    reject(err);
+                }
+            }
+        )
+    }
 }
 
 module.exports = new Questions();

@@ -90,9 +90,7 @@ module.exports = {
                 array.push(data.package[i].questions[rNum2]);
             }
 
-
-
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 10; i++) {
                 rNum1 = Math.floor((Math.random() * 10));
                 rNum2 = Math.floor((Math.random() * 10));
                 tmp = array[rNum1];
@@ -119,9 +117,6 @@ module.exports = {
 
             array = [];
             var data = await db.collection('itemList').findOne({});
-            console.log(data.items.length)
-            console.log(getData.length)
-
             for (var i = 0; i < getData.length; i++) {
                 for (var j = 0; j < data.items.length; j++) {
                     if (getData[i] == data.items[j].index) {
@@ -129,6 +124,36 @@ module.exports = {
                     }
                 }
             }
+            return array;
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    getItemExplanation: async (getData) => {
+        const client = await MongoClient.connect(url);
+
+        if (!client) {
+            return;
+        }
+        try {
+            const db = client.db("QuestionContent");
+            //getData : code : [a, b]
+            array = [];
+            var data = await db.collection('itemExplanation').findOne({});
+            console.log('getItemExplanation items', data.manuals[0].skinCode)
+            console.log('getItemExplanation get Data : ', getData.code[0])
+
+            for (var i = 0; i < getData.code.length; i++) {
+                console.log('hi')
+                for (var j = 0; j < data.manuals.length; j++) {
+                    console.log('getData : ' + getData.code[i] + ': ' + data.manuals[j].skinCode);
+                    if (getData.code[i] == data.manuals[j].skinCode) {
+                        console.log(getData.code[i]);
+                        array.push(data.manuals[j]);
+                    }
+                }
+            }
+            console.log('array', array)
             return array;
         } catch (err) {
             console.log(err);

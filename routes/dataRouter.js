@@ -32,7 +32,6 @@ dataRouter.post('/api/question', async (req, res) => {
         rawArray.push(dJson);
         eJson.code5 = req.body.code5;
         rawArray.push(eJson);
-        console.log(rawArray)
         data = [];
         data1 = [];
         data2 = [];
@@ -75,12 +74,23 @@ dataRouter.post('/api/question', async (req, res) => {
         } else {
             var result =await dataModel.getRecommendationList(data5);
         }
-        console.log(result);
         res.status(200).send(result);
     } catch (err) {
         console.log(err)
         res.status(500).send(err);
     }
 });
+
+dataRouter.post('/api/getItemExplanation', async (req, res) => {
+    try {
+        console.log('getItemExplanation', req.body);
+        var result = await dataModel.getItemExplanation(req.body);
+        console.log('result', result)
+        res.status(200).send(result)
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+})
 
 module.exports = dataRouter;
