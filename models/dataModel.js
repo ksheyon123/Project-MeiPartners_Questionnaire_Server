@@ -14,6 +14,46 @@ class Questions {
             }
         )
     }
+
+    FindQuestionNext(data) {
+        return new Promise (
+            async (resolve, reject) => {
+                try {
+                    const result = await mongoDB.findNext(data);
+                    resolve(result[0]);
+                } catch (err) {
+                    console.log(err);
+                    reject(err);
+                }
+            }
+        )
+    }
+
+    getRandomQuestion() {
+        return new Promise (
+            async (resolve, reject) => {
+                try {
+                    const result = await mongoDB.getRandomQuestion();
+                    resolve(result);
+                } catch (err) {
+                    reject(err);
+                }
+            }
+        )
+    }
+
+    getRecommendationList(ordered) {
+        return new Promise (
+            async (resolve, reject) => {
+                try {
+                    const result = await mongoDB.getRecommendationList(ordered);
+                    resolve(result);
+                } catch (err) {
+                    reject(err);
+                }
+            }
+        )
+    }
 }
 
 module.exports = new Questions();

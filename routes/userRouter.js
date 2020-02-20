@@ -16,6 +16,7 @@ userRouter.post('/api/register', async (req, res) => {
 
 userRouter.post('/api/login', async (req, res) => {
     try {
+        console.log(req.body);
         var result = await userModel.UserLogin(req);
         console.log(result);
         if(result.user) {
