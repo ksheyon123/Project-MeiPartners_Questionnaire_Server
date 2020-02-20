@@ -100,17 +100,17 @@ module.exports = {
 
             array = [];
             var data = await db.collection('itemList').findOne({});
-            for (var j = 0; j < getData.length; j++) {
-                for (var i = 0; data.items.length; i++) {
+            console.log(data.items.length)
+            console.log(getData.length)
 
-                    if (getData[j] == data.items[i].index) {
-                        if (i * j == 10) {
-                            array.push(data.items[i]);
-                            return array;
-                        }
+            for(var i = 0; i < getData.length; i++ ){ 
+                for (var j =0; j < data.items.length; j++) {
+                    if(getData[i] == data.items[j].index) {
+                        array.push(data.items[j]);
                     }
                 }
             }
+            return array;
         } catch (err) {
             console.log(err);
         }

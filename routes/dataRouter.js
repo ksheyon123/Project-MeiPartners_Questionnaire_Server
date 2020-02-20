@@ -5,6 +5,7 @@ var dataModel = require('../models/dataModel');
 
 dataRouter.post('/api/getuserselectiondata', async (req, res) => {
     try {
+        console.log(req.body)
         var birth = req.body.year + '/' + req.body.month + '/' + req.body.day;
         req.session.user = {
             user: req.session.user.user,
@@ -74,24 +75,18 @@ dataRouter.post('/api/question', async (req, res) => {
                 data5.push(str);
             }
         }
-        console.log(data1);
-        console.log(data2);
-        console.log(data3);
-        console.log(data4);
-        console.log(data5);
 
         if (data1[0]) {
-            await dataModel.getRecommendationList(data1);
+            var result = await dataModel.getRecommendationList(data1);
         } else if (!data1[0] && data2[0]) {
-            await dataModel.getRecommendationList(data2);
+            var result =await dataModel.getRecommendationList(data2);
         } else if (!data2[0] && data3[0]) {
-            await dataModel.getRecommendationList(data3);
+            var result =await dataModel.getRecommendationList(data3);
         } else if (!data3[0] && data4[0]) {
-            await dataModel.getRecommendationList(data4);
+            var result =await dataModel.getRecommendationList(data4);
         } else {
-            await dataModel.getRecommendationList(data5);
+            var result =await dataModel.getRecommendationList(data5);
         }
-        result = true;
         res.status(200).send(result);
     } catch (err) {
         console.log(err)
