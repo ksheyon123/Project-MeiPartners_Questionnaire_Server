@@ -22,13 +22,12 @@ class Users {
                 var userList = await this.selectAll();
                 try {
                     let flags = 0;
-                    for(const content of userList[0]) {
+                    for(const content of userList) {
                         if(content.user == req.body.user) {
                             flags = 1;
                             break;
                         }
                     }
-
                     switch (flags) {
                         case 0 :
                             const sql = 'INSERT INTO user (user, password, name) values (?, ?, ?)';
@@ -39,9 +38,8 @@ class Users {
                                 name : req.body.name,
                             }
                             resolve(req.session.user);
-
                         case 1 :
-                            resolve('중복된 아이디입니다.');
+                            resolve(false);
                             break;
                     }
                 } catch (err) {
