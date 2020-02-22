@@ -126,6 +126,8 @@ module.exports = {
             return array;
         } catch (err) {
             console.log(err);
+        } finally {
+            client.close();
         }
     },
     getItemExplanation: async (getData) => {
@@ -156,6 +158,8 @@ module.exports = {
             return array;
         } catch (err) {
             console.log(err);
+        } finally {
+            client.close();
         }
     }
 }

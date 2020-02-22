@@ -27,7 +27,7 @@ var mainRouter = require('./routes/routers.js');
 
 app.use(mainRouter);
 
-app.listen(9999, 'meipartners.xyz', () => {
+app.listen(3000, 'localhost', () => {
   console.log('Server On');
 });
 
