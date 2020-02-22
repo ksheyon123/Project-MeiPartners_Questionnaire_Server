@@ -8,7 +8,7 @@ userRouter.post('/api/register', async (req, res) => {
         console.log('register', req.body)
 
         if(req.body.password != req.body.passwordConfirm) {
-            res.status(500).send(false)
+            res.send(false)
         }
         var result = await userModel.UserRegister(req);
         res.status(200).send(result);
