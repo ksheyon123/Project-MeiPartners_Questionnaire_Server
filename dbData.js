@@ -4,7 +4,7 @@ const url = 'mongodb://localhost:27017';
 
 module.exports = {
     insertAllQuestions: function () {
-        MongoClient.connect(url, (err, client) => {
+        MongoClient.connect(url, {useUnifiedTopology : true }, (err, client) => {
             if (err) throw err;
 
             if (!client) {
