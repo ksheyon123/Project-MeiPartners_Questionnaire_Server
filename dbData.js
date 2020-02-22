@@ -26,7 +26,7 @@ module.exports = {
                 console.log(stats);
             });
 
-            db.collection('question').insertMany(
+            db.collection('question').insert(
                 {
                     package: [
                         {
@@ -104,7 +104,7 @@ module.exports = {
                 }
             );
 
-            db.collection('itemList').insertMany(
+            db.collection('itemList').insert(
                 {
                     items: [
                         { index: 'code1', skinType: '건성 타입', cleansing: '5.8마일드클렌저', toner: '쥬얼리 토너', ample: 'R앰플', serum: '쥬얼리 에센스', eyecream: '네오 아이 블러썸', cream: '쥬얼리 크림', mask: '377 나노셀 마스크', sunblock: '인텐시브 선블럭', blemishbam: '닥터힐럭스 블래미쉬 밤', special: '화산재 크림', opt1: '워터 탱크 모이스춰 마스크', opt2: '미라클 펩타 볼륨' },
@@ -116,7 +116,7 @@ module.exports = {
                 }
             );
 
-            db.collection('itemExplanation').insertMany(
+            db.collection('itemExplanation').insert(
                 {
                     manuals: [
                         {
