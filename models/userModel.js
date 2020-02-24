@@ -37,7 +37,6 @@ class Users {
                             flags = 2;
                         }
                     }
-                    console.log(flags);
                     switch (flags) {
                         case 0:
                             //MySQL 유저 등록 프로세스

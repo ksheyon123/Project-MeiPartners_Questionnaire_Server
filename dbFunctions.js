@@ -141,15 +141,10 @@ module.exports = {
             //getData : code : [a, b]
             array = [];
             var data = await db.collection('itemExplanation').findOne({});
-            console.log('getItemExplanation items', data.manuals[0].skinCode)
-            console.log('getItemExplanation get Data : ', getData[0])
 
             for (var i = 0; i < getData.length; i++) {
-                console.log('hi')
                 for (var j = 0; j < data.manuals.length; j++) {
-                    console.log('getData : ' + getData[i] + ': ' + data.manuals[j].skinCode);
                     if (getData[i] == data.manuals[j].skinCode) {
-                        console.log(getData[i]);
                         array.push(data.manuals[j]);
                     }
                 }
