@@ -3,9 +3,10 @@ var dataRouter = express.Router();
 
 var dataModel = require('../models/dataModel');
 
-dataRouter.get('/api/getuserselectiondata', async (req, res) => {
+dataRouter.get('/api/randquestions', async (req, res) => {
     try {
         // Get Random Questions
+	console.log(req.body);
         var result = await dataModel.getRandomQuestion();
         res.status(200).send(result);
     } catch (err) {
