@@ -87,18 +87,5 @@ dataRouter.post('/api/question', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
-module.exports = dataRouter;
-=======
-// dataRouter.post('/api/getItemExplanation', async (req, res) => {
-//     try {
-//         console.log('getItemExplanation', req.body);
-//         res.status(200).send(result)
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).send(err);
-//     }
-// })
 
 module.exports = dataRouter;
->>>>>>> cddd470f1a96f9bf62f8e516b926d56c873a38a4
