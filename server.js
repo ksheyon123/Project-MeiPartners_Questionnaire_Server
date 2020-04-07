@@ -6,8 +6,8 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
 // MongoDB Questions Data List Import
-const initialData = require('./dbData');
-initialData.insertAllQuestions();
+// const initialData = require('./dbData');
+// initialData.insertAllQuestions();
 
 app.use(session({
   secret: 'keyboard cat',

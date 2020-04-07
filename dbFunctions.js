@@ -4,7 +4,7 @@ const url = 'mongodb://localhost:27017';
 
 module.exports = {
     findOne: async (result) => {
-        const client = await MongoClient.connect(url)
+        const client = await MongoClient.connect(url, { useUnifiedTopology: true })
             .catch(err => { console.log(err) });
 
         if (!client) {
@@ -29,8 +29,9 @@ module.exports = {
             });
             array = [];
             var data = await db.collection('question').findOne({});
-            for (let i = 0; i < data.package.length; i++) {
-                if (data.package[i].skinCode == result) {
+            console.log('data', data)
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].skinCode == result) {
                     array.push(data.package[i].questions);
                 }
             }
@@ -65,20 +66,19 @@ module.exports = {
         }
     },
     getRandomQuestion: async () => {
-        const client = await MongoClient.connect(url);
+        const client = await MongoClient.connect(url, { useUnifiedTopology: true });
 
         if (!client) {
             return;
         }
         try {
-            const db = client.db("QuestionContent");
+            const db = client.db("lovudb");
 
             array = [];
-            list1 = [1, 2, 3, 4, 5];
             tmp = [];
-            var data = await db.collection('question').findOne({});
-            for (let i = 0; i < data.package.length; i++) {
-                var count = data.package[i].questions.length;
+            var data = await db.collection('Questions').find().toArray();
+            for (let i = 0; i < data.length; i++) {
+                var count = data[i].questions.length;
                 var rNum1 = Math.floor((Math.random() * count));
                 var rNum2 = Math.floor((Math.random() * count));
                 do {
@@ -86,18 +86,17 @@ module.exports = {
                 }
                 while (rNum1 == rNum2);
 
-                array.push(data.package[i].questions[rNum1]);
-                array.push(data.package[i].questions[rNum2]);
+                array.push(data[i].questions[rNum1]);
+                array.push(data[i].questions[rNum2]);
             }
-
+            console.log(array)
             for (var i = 0; i < 10; i++) {
-                rNum1 = Math.floor((Math.random() * 10));
-                rNum2 = Math.floor((Math.random() * 10));
+                rNum1 = Math.floor((Math.random() * 5));
+                rNum2 = Math.floor((Math.random() * 5));
                 tmp = array[rNum1];
                 array[rNum1] = array[rNum2];
                 array[rNum2] = tmp;
             }
-
             return array;
         } catch (err) {
             console.log(err);
